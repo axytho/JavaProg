@@ -1,9 +1,13 @@
 package practica;
 import be.kuleuven.cs.som.annotate.*;
 /**
- * Deze klasse stelt een file voor, een file heeft steeds een naam en grootte. 
- * Het moment waarop de klasse werd aangemaakt wordt ook steeds bijgehouden. En een bestand is
- * al dan niet schrijfbaar, afhankelijk van het schrijfrecht. 
+ * This class represents a file, and a file has a name and a size
+ * When file is made the date is retained and a file can be write-able or not
+ * 
+ * 
+ * @invar File size must be valid | isValidFileSize(getFileSize()
+ * 
+ * @invar 
  * 
  * @author Jonas
  * @author Frederik
@@ -12,19 +16,18 @@ import be.kuleuven.cs.som.annotate.*;
 
 public class File {
 	/**
-	 * Maakt een nieuwe file aan met de meegegeven naam, grootte en die al dan niet schrijfbaar is. 
+	 * Makes a new file with a given name, size, and the abillity to be written by the user
 	 * @param 	name 
-	 * 			De naam die wordt gegeven aan het bestand.
+	 * 			Name given to file.
 	 * @param	size
-	 * 			De grootte van het bestand, uitgedrukt in bytes. 
+	 * 			Size of file expressed in bytes.
 	 * @param	writable
-	 * 			bepaald of een bestand al dan niet schrijfbaar is. 
-	 * @post		Als de meegegeven string enkel bestaat uit: hoofdletters, kleine letters
-	 * 			cijfers, underscores, hyphens en punten. Dan wordt deze ingesteld als name. Anders 
-	 * 			worden alle karakters die niet aan de beginvoorwaarden voldoen eruit gehaald, 
-	 * 			het resultaat hiervan wordt ingesteld. 
-	 * @pre 		De groote moet beneden de maximale grootte liggen.
-	 * @effect 	De grootte van de file is ingesteld 
+	 * 			Depens on whether the file is writeable or not
+	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
+	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.	
+	 * 			 
+	 * @pre 	The total size must be lower than the max size.
+	 * @effect 	The size of the file is set. 
 	 * 
 	 */
 	File(String name, int size, boolean writable){
@@ -34,14 +37,13 @@ public class File {
 	}
 	
 	
-	/** Maakt een nieuw leeg en wijzigbaar file aan met de meegegeven naam. 
+	/** Creates a new writeable file with the given name
 	 * @param	name
-	 * 			De naam die wordt meegegeven aan het bestand. 
-	 * @post		Als de meegegeven string enkel bestaat uit: hoofdletters, kleine letters
-	 * 			cijfers, underscores, hyphens en punten. Dan wordt deze ingesteld als name. Anders 
-	 * 			worden alle karakters die niet aan de beginvoorwaarden voldoen eruit gehaald, 
-	 * 			het resultaat hiervan wordt ingesteld. 
-	 * @effect 	Een lege file met een gegeven naam, die leeg is en wijzigbaar. Met de meegegeven naam. 
+	 * 			Name given to file 
+	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
+	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.
+	 * @effect 	An empty, writeable file with the given name
+	 * 
 	 */
 	File(String name){
 	/*  code nog uitwerken. 	
@@ -51,7 +53,7 @@ public class File {
 	
 	
 	/**
-	 * Geeft de naam van een file terug
+	 * Returns the name of the file
 	 */
 	
 	@basic public String getName() {
@@ -59,13 +61,11 @@ public class File {
 	}
 	
 	/** 
-	 * Hernoemt een file
+	 * Gives the file a new name
 	 * @param	name 
-	 * 			De naam die gegeven wordt aan het bestand. 
-	 * @post 	Als de meegegeven string enkel bestaat uit: hoofdletters, kleine letters
-	 * 			cijfers, underscores, hyphens en punten. Dan wordt deze ingesteld als name. Anders 
-	 * 			worden alle karakters die niet aan de beginvoorwaarden voldoen eruit gehaald, 
-	 * 			het resultaat hiervan wordt ingesteld. 
+	 * 			The name given to the file
+	 * @post 	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
+	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.
 	 */
 	public void setName(String name) {
 	/* schrijfrechten controleren 
@@ -76,22 +76,36 @@ public class File {
 		
 	}
 	
+	/*
+	 * All classes related to the size of the file
+	 */
 	
 	/**
-	 * Geeft de grootte van een file terug. 
+	 * Variable representing the size of the file
 	 */
+	private int size;
+	
+	
+	
+
+	/**
+	 * Returns the  size of our file
+	 */
+	
 	@basic public int getSize() {
-		
+		return this.size;
 	}
 	
 	/**
-	 * Past de grootte van een file aan.
+	 * Sets the size of our file
 	 * @param	bytes 
-	 * 			Het aantal bytes die toegevoegd moeten worden. 
-	 * @post		In de wijziging van size met bytes resulteert in een aantal bytes boven de maximale waarde of beneden 0. 
-	 * 			Dan word respectievelijk de maximale waarde of 0 ingesteld als size. 
+	 * 			The new size of the file
+	 * 			
+	 * @post	If a change of size results in a number of bytes higher than the maximum of lower than zero,
+	 * 			then the number of bytes is set to the max or 0 respectively. 
 	 */
 	private void setSize(int bytes) {
+		this.size = bytes;
 	/* @jonas: private gemaakt omdat het de bedoeling is de size aan te passen via enlarge/shorten
 	 * 
 	 * controleren of maximale grootte niet overschreden, niet beneden 0..
@@ -101,14 +115,14 @@ public class File {
 	}
 	
 	/** 
-	 * Laat de grote van een file toenemen met een meegegeven waarde 'bytes'. 
+	 * Increase the size of the file with the amount of bites given
 	 * 
 	 *@param		bytes
-	 *			Het aantal bytes dat toegevoegd moeten worden. 
-	 *@post		De grootte van het bestand zal correct gewijzigd zijn op voorwaarde dat het aantal bytes 
-	 *			niet boven het m	aximaal toegelaten aantal bytes is gegaan. In dit geval is de size ingesteld 
-	 *			op het maximaal aantal toegelaten aantal bytes. 
-	 * 
+	 *			The number of bytes to be added
+	 *			
+	 *@post		The size of the file changed correctly if the number of bytes does not surpass
+	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
+	 *			the maximum number of bytes.
 	 */
 	
 	public void enlarge(int bytes) {		
@@ -122,13 +136,12 @@ public class File {
 	
 	
 	/** 
-	 * Laat de grote van een file afnamen met een meegegeven waarde 'bytes'
+	 * Decrease the size of the file with the amount of bites given
 	 * 
 	 * @param	bytes 
-	 * 			Het aantal bytes dat verminderd worden. 
-	 * @post 	De grootte van het bestand zal correct gewijzigd zijn op voorwaarde dat het aantal bytes 
-	 *			niet beneden 0 is gegaan. In dit geval is de size ingesteld 
-	 *			op 0. 
+	 * 			Number of bytes to be removed 
+	 * @post 	The size of the file changed correctly if the number of bytes is not less than 0.
+	 * 			If this is not the case, the resulting number of bytes will be 0. 
 	 */
 	
 	public void shorten(int bytes) {
