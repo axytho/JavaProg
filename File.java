@@ -90,11 +90,16 @@ public class File {
 
 	/**
 	 * Returns the  size of our file
+	 * The size is the amount of bytes a file takes up on this computer
+	 * 
+	 * 
 	 */
 	
-	@basic public int getSize() {
+	@Raw @basic public int getSize() {
 		return this.size;
 	}
+	
+	
 	
 	/**
 	 * Sets the size of our file
@@ -115,7 +120,7 @@ public class File {
 	}
 	
 	/** 
-	 * Increase the size of the file with the amount of bites given
+	 * Increase the size of the file with the amount of bytes given
 	 * 
 	 *@param		bytes
 	 *			The number of bytes to be added
@@ -129,7 +134,7 @@ public class File {
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
-	 * 1 keer geimplementeerd worden. ≤	
+	 * 1 keer geimplementeerd worden. 	
 	 */
 			
 	}
