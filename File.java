@@ -22,7 +22,10 @@ public class File {
 	 * @param	size
 	 * 			Size of file expressed in bytes.
 	 * @param	writable
-	 * 			Depens on whether the file is writeable or not
+	 * 			Depends on whether the file is writeable or not
+	 * 
+	 * @pre 	The given size is a valid file size | isValidFileSize()
+	 * 
 	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.	
 	 * 			 
@@ -32,7 +35,7 @@ public class File {
 	 */
 	File(String name, int size, boolean writable){
 		setName(name);
-		//setWriteable(writable);
+		setWriteable(writable);
 
 		/* er moet hier nog de name komen */
 		this.size = size;
@@ -107,35 +110,34 @@ public class File {
 			}
 	}
 	
+	/**
+	 * All classes related to writable
+	 */
 	
 	/**
-<<<<<<< HEAD
-	 * writable
+	 * A boolean which states wether a given file is writeable
 	 */
+	private boolean writable = true;  /* when the file is created it's always writable. */
 	
-//	private boolean writable = true;  /* when the file is created it's always writable. 
-//	
-//	/**
-//	 * gives a 'true' or 'false' to the field writable. 
-//	 * 
-//	 * @param	writable
-//	 * 			paramter that determines if a file is writable or not.
-//	 */
-//	private boolean setWriteable(boolean writeable) {
-//		
-//		
-//	}
-//	
-//	/**
-//	 * private function returning True or False depending on the file being writable or not. 
-//	 */
-//	private boolean isWritable() {
-//		
-//	}
 	
-	/*
-	 * All classes related to the size of the file
+	/**
+	 * Sets the attribute to the boolean 'writeable'
+	 * 
+	 * @param	writeable
+	 * 			Parameter which determines whether a file can be edited.
 	 */
+	public boolean setWriteable(boolean writeable) {
+		this.writable = writeable;
+	}
+	
+	/**
+	 * @return whether the function is writable
+	 */
+	public boolean isWritable() {
+		return writable;
+	}
+	
+
 	
 
 	
@@ -194,12 +196,7 @@ public class File {
 	 */
 	
 	public void enlarge(int bytes) {
-		this.size += bytes;
-	/* schrijfrechten cotroleren 
-	 *  
-	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
-	 * 1 keer geimplementeerd worden. ≤	
-	 */
+		this.setSize(bytes + size);bytes;
 			
 	}
 	
@@ -220,18 +217,44 @@ public class File {
 	 *			
 	 */
 	public void shorten(int bytes) {
-		this.size -= bytes;
+		this.setSize(size - bytes);
 	}
 	
-	private boolean canAcceptForEnlarge(int bytes) {
+	/**
+	 * @param	bytes
+	 * 			The amount of bytes with which the file could be enlarged given a file size
+	 * 
+	 * @return	True if the new size is valid, the file is writable and the amount of bytes is positive.|
+	 * 			result == (isValidFileSize(size + bytes) && isWritable() && bytes>0)
+	 */
+	
+	public boolean canAcceptForEnlarge(int bytes) {
 		return (isValidFileSize(size + bytes) && isWritable() && bytes>0)
 	}
+	/**
+	 * @param	bytes
+	 * 			The amount of bytes with which the file could be shortened given a file size
+	 * 
+	 * @return	True if the new size is valid, the file is writable and the amount of bytes is positive.|
+	 * 			result == (isValidFileSize(size - bytes) && isWritable() && bytes>0)
+	 */
 	
-	private boolean canAcceptForShorten(int bytes) {
+	public boolean canAcceptForShorten(int bytes) {
 		return (isValidFileSize(size - bytes) && isWritable() && bytes>0)
 	}
 
-	
+	/**
+	 * Checks whether the given file size is a valid size for the file
+	 * 
+	 * @param fileSize
+	 * 		  The file size to check
+	 * 
+	 * @return	True if the file size is positive or 0 (file is empty) and less than the maximum value, 
+	 * 			False otherwise
+	 *			| result == (fileSize >= 0) && (filesize < this.maxvalue)
+	 * 
+	 * 
+	 */
 	
 	public static boolean isValidFileSize(int fileSize) {
 		return (fileSize >= 0) && (filesize < this.maxvalue)
@@ -242,17 +265,7 @@ public class File {
 		File file1 = new File(name); 
 		System.out.println(file1.getName());
 		System.out.println(file1.getSize());
-	/**
-	 * Checks whether the given file size is a valid size for the file
-	 * 
-	 * @param fileSize
-	 * 		  The file size to check
-	 * 
-	 * @return True if the file size is positive and less than the maximum value, False otherwise
-	 * 		   | result == (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
-	 * 
-	 * 
-	 */
+*/
 	
 
 		
