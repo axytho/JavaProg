@@ -183,18 +183,18 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
-	 *@pre 		The size of the file must be a valid size
-	 *			| isValidFileSize(size)
+	 *@pre 		The new size of the file must be a valid size and must be writable
+	 *			| canAcceptForEnlarge(bytes)
 	 *
 	 *@post		The size of the file changed correctly if the number of bytes does not surpass
 	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
 	 *			the maximum number of bytes. 
-	 *			| new.getSize() = this.getSize() + bytes
+	 *			| new.getSize() == this.getSize() + bytes
 	 *			
 	 */
 	
 	public void enlarge(int bytes) {
-		
+		this.size += bytes;
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
@@ -207,16 +207,29 @@ public class File {
 	/** 
 	 * Decrease the size of the file with the amount of bites given
 	 * 
-	 * @param	bytes 
-	 * 			Number of bytes to be removed 
-	 * @post 	The size of the file changed correctly if the number of bytes is not less than 0.
-	 * 			If this is not the case, the resulting number of bytes will be 0. 
+	 *@param		bytes
+	 *			The number of bytes to be added
+	 *			
+	 *@pre 		The size of the file must be a valid size and must be writable
+	 *			| canAcceptForShorten(bytes)
+	 *
+	 *@post		The size of the file changed correctly if the number of bytes does not surpass
+	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
+	 *			the maximum number of bytes. 
+	 *			| new.getSize() == this.getSize() - bytes
+	 *			
 	 */
-	
 	public void shorten(int bytes) {
-
+		this.size -= bytes;
 	}
 	
+	private boolean canAcceptForEnlarge(int bytes) {
+		return (isValidFileSize(size + bytes) && isWritable() && bytes>0)
+	}
+	
+	private boolean canAcceptForShorten(int bytes) {
+		return (isValidFileSize(size - bytes) && isWritable() && bytes>0)
+	}
 
 	
 	
