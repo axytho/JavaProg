@@ -37,19 +37,15 @@ public class File {
 	 */
 	File(String name, int size, boolean writable){
 		setName(name);
-<<<<<<< HEAD
 		setWriteable(writable);
 
 		/* er moet hier nog de name komen */
 		this.size = size;
-		/* schrijf hier nog defensief het schrijfrecht*/
-=======
+
 		this.creationTime = timeStamp();  
 		
 		
-		//setWriteable(writable);
-		
->>>>>>> 9933f653062b4e6eabe0ba22bf1934a6904a34b0
+
 		
 	}
 	
@@ -63,9 +59,9 @@ public class File {
 	 * 
 	 */
 	File(String name){
-		setName(name);
 		this.creationTime = timeStamp();  
-		setSize(0);
+		/* @Frederick the right way of making a new constructor */
+		this(name, 0, True);
 		
 		
 	}
@@ -82,7 +78,7 @@ public class File {
 	/**
 	 * private field for writable
 	 */
-	private final boolean writable = true; 
+	private final boolean writable; 
 
 	
 	private String creationTime = null;
@@ -136,7 +132,7 @@ public class File {
 	
 	
 	/**
-<<<<<<< HEAD
+
 	 * Sets the attribute to the boolean 'writeable'
 	 * 
 	 * @param	writeable
@@ -158,7 +154,7 @@ public class File {
 
 	
 	
-=======
+	/**
 	 * 
 	 * @return 
 	 * 		A string with the current time. 
@@ -182,7 +178,7 @@ public class File {
 	/*
 	 * All classes related to the size of the file
 	 */
->>>>>>> 9933f653062b4e6eabe0ba22bf1934a6904a34b0
+
 
 	/**
 	 * Returns the  size of our file
@@ -202,11 +198,7 @@ public class File {
 	 */
 	private void setSize(int bytes) {
 		this.size = bytes;
-	/* @jonas: private gemaakt omdat het de bedoeling is de size aan te passen via enlarge/shorten
-	 * 
-	 * controleren of maximale grootte niet overschreden, niet beneden 0..
-	 * modification time aanpassen 
-	 */
+
 		
 	}
 	
@@ -216,7 +208,7 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
-<<<<<<< HEAD
+
 	 *@pre 		The new size of the file must be a valid size and must be writable
 	 *			| canAcceptForEnlarge(bytes)
 	 *
@@ -228,23 +220,7 @@ public class File {
 	 */
 	
 	public void enlarge(int bytes) {
-		this.setSize(bytes + size);bytes;
-=======
-	 *@post		The size of the file changed correctly if the number of bytes does not surpass
-	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
-	 *			the maximum number of bytes.
-	 */
-	
-	public void enlarge(int bytes) {		
-	/* schrijfrechten cotroleren 
-	 *  
-	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
-	 * 1 keer geimplementeerd worden. ≤	
-	 */
->>>>>>> 9933f653062b4e6eabe0ba22bf1934a6904a34b0
-			
-	}
-	
+		this.setSize(bytes + size);
 	
 	/** 
 	 * Decrease the size of the file with the amount of bites given
@@ -265,7 +241,7 @@ public class File {
 		this.setSize(size - bytes);
 	}
 	
-<<<<<<< HEAD
+
 	/**
 	 * @param	bytes
 	 * 			The amount of bytes with which the file could be enlarged given a file size
@@ -311,12 +287,7 @@ public class File {
 		File file1 = new File(name); 
 		System.out.println(file1.getName());
 		System.out.println(file1.getSize());
-*/
-	
-=======
-	/**
-	 * writable
-	 */
+
 	
 //	private boolean writable = true;  /* when the file is created it's always writable. 
 //	
