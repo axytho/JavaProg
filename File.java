@@ -37,6 +37,13 @@ public class File {
 		
 	}
 	
+	/**
+	 * Creates a parameter maxvalue which for now is equal to the largest possible integer
+	 * but which can be easily changed in the future.
+	 */
+	
+	private int maxvalue = Integer.MAX_VALUE;
+	
 	
 	/** Creates a new writeable file with the given name
 	 * @param	name
@@ -117,6 +124,9 @@ public class File {
 	 * 
 	 * controleren of maximale grootte niet overschreden, niet beneden 0..
 	 * modification time aanpassen 
+	 * 
+	 * @Frederik: mag private zijn maar dit wordt nominaal geprogrammeerd dus is het niet aan mij
+	 *  om te checken dat aan de voorwaarden worden voldaan
 	 */
 		
 	}
@@ -127,12 +137,18 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
+	 *@pre 		The size of the file must be a valid size
+	 *			| isValidFileSize(size)
+	 *
 	 *@post		The size of the file changed correctly if the number of bytes does not surpass
 	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
-	 *			the maximum number of bytes.
+	 *			the maximum number of bytes. 
+	 *			| new.getSize() = this.getSize() + bytes
+	 *			
 	 */
 	
-	public void enlarge(int bytes) {		
+	public void enlarge(int bytes) {
+		
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
@@ -168,7 +184,7 @@ public class File {
 	 */
 	
 	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
+		return (fileSize >= 0) && (filesize < this.maxvalue)
 	}
 	
 }
