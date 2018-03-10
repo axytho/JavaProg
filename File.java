@@ -75,10 +75,6 @@ public class File {
 	 */
 	private int size;
 	
-	/**
-	 * private field for writable
-	 */
-	private final boolean writable; 
 
 	
 	private String creationTime = null;
@@ -128,7 +124,8 @@ public class File {
 	/**
 	 * A boolean which states wether a given file is writeable
 	 */
-	private boolean writable = true;  /* when the file is created it's always writable. */
+	private boolean writable; /* when the file is created it's always writable. @Frederick, you should
+	do that in the constructor, not the initialization */
 	
 	
 	/**
