@@ -31,15 +31,12 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
-<<<<<<< HEAD
 		setName(name);
 		//setWriteable(writable);
-		
-=======
+
 		/* er moet hier nog de name komen */
 		this.size = size;
 		/* schrijf hier nog defensief het schrijfrecht*/
->>>>>>> AxythoBranch
 		
 	}
 	
@@ -60,16 +57,9 @@ public class File {
 	 * 
 	 */
 	File(String name){
-<<<<<<< HEAD
-		setName(name);
-		setSize(0);
-		
-=======
 		this(name, 0, true);
 	/*  code nog uitwerken. 	
 	 */
->>>>>>> AxythoBranch
-		
 	}
 	
 	/** 
