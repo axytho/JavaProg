@@ -1,4 +1,6 @@
 package practica;
+import java.util.Date;
+
 import be.kuleuven.cs.som.annotate.*;
 /**
  * This class represents a file, and a file has a name and a size
@@ -32,20 +34,13 @@ public class File {
 	 */
 	File(String name, int size, boolean writable){
 		setName(name);
+		this.creationTime = timeStamp();  
+		
+		
 		//setWriteable(writable);
-
-		/* er moet hier nog de name komen */
-		this.size = size;
-		/* schrijf hier nog defensief het schrijfrecht*/
+		
 		
 	}
-	
-	/**
-	 * Creates a parameter maxvalue which for now is equal to the largest possible integer
-	 * but which can be easily changed in the future.
-	 */
-	
-	private int maxvalue = Integer.MAX_VALUE;
 	
 	
 	/** Creates a new writeable file with the given name
@@ -53,13 +48,15 @@ public class File {
 	 * 			Name given to file 
 	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.
-	 * @effect 	An empty, writeable file with the given name is initialized
+	 * @effect 	An empty, writeable file with the given name
 	 * 
 	 */
 	File(String name){
-		this(name, 0, true);
-	/*  code nog uitwerken. 	
-	 */
+		setName(name);
+		this.creationTime = timeStamp();  
+		setSize(0);
+		
+		
 	}
 	
 	/** 
@@ -75,18 +72,20 @@ public class File {
 	 * private field for writable
 	 */
 	private final boolean writable = true; 
+
+	
+	private String creationTime = null;
+	private String modificationTime = null; 
+	
 	
 	/**
 	 * Returns the name of the file
 	 */
-	
 	 public String getName() {
 		 return this.name; 	
 	}
 	 
-	 
-	 
-	
+
 	/** 
 	 * Gives the file a new name
 	 * @param	name 
@@ -105,49 +104,47 @@ public class File {
 					this.name = "name";
 				}
 			}
+			if (creationTime != null)
+				{this.modificationTime = timeStamp();}
+			
+	}
+	
+
+	public String TimeCreated() {
+		return this.creationTime; 
 	}
 	
 	
 	/**
-<<<<<<< HEAD
-	 * writable
+	 * 
+	 * @return 
+	 * 		A string with the current time. 
+	 */		
+	private String timeStamp() {
+		Date date = new Date();
+		return date.toString(); 
+	}
+		
+	/**
+	 * @return 
+	 * 		returns the time on wich the time was last modified. 
 	 */
+	public String lastModified() {
+		return this.modificationTime; 
+	}
 	
-//	private boolean writable = true;  /* when the file is created it's always writable. 
-//	
-//	/**
-//	 * gives a 'true' or 'false' to the field writable. 
-//	 * 
-//	 * @param	writable
-//	 * 			paramter that determines if a file is writable or not.
-//	 */
-//	private boolean setWriteable(boolean writeable) {
-//		
-//		
-//	}
-//	
-//	/**
-//	 * private function returning True or False depending on the file being writable or not. 
-//	 */
-//	private boolean isWritable() {
-//		
-//	}
+
+	
 	
 	/*
 	 * All classes related to the size of the file
 	 */
-	
-
-	
-	
 
 	/**
 	 * Returns the  size of our file
-	 * 
-	 * 
 	 */
 	
-	@Raw public int getSize() {
+	public int getSize() {
 		return this.size;
 	}
 	
@@ -155,14 +152,9 @@ public class File {
 	 * Sets the size of our file
 	 * @param	bytes 
 	 * 			The new size of the file
-	 * 
-	 * @pre 	The given size must be a valid size for the file | isValidFileSize(bytes)
-	 * 
 	 * 			
 	 * @post	If a change of size results in a number of bytes higher than the maximum of lower than zero,
 	 * 			then the number of bytes is set to the max or 0 respectively. 
-	 * 			| new.getSize() == bytes 
-	 * 
 	 */
 	private void setSize(int bytes) {
 		this.size = bytes;
@@ -170,9 +162,6 @@ public class File {
 	 * 
 	 * controleren of maximale grootte niet overschreden, niet beneden 0..
 	 * modification time aanpassen 
-	 * 
-	 * @Frederik: mag private zijn maar dit wordt nominaal geprogrammeerd dus is het niet aan mij
-	 *  om te checken dat aan de voorwaarden worden voldaan
 	 */
 		
 	}
@@ -183,18 +172,12 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
-	 *@pre 		The size of the file must be a valid size
-	 *			| isValidFileSize(size)
-	 *
 	 *@post		The size of the file changed correctly if the number of bytes does not surpass
 	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
-	 *			the maximum number of bytes. 
-	 *			| new.getSize() = this.getSize() + bytes
-	 *			
+	 *			the maximum number of bytes.
 	 */
 	
-	public void enlarge(int bytes) {
-		
+	public void enlarge(int bytes) {		
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
@@ -217,31 +200,39 @@ public class File {
 
 	}
 	
-
-	
-	
-	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize >= 0) && (filesize < this.maxvalue)
-	}
-
-	public static void main(String [ ] args){
-		String name = "go-%ede_man."; 
-		File file1 = new File(name); 
-		System.out.println(file1.getName());
-		System.out.println(file1.getSize());
 	/**
-	 * Checks whether the given file size is a valid size for the file
-	 * 
-	 * @param fileSize
-	 * 		  The file size to check
-	 * 
-	 * @return True if the file size is positive and less than the maximum value, False otherwise
-	 * 		   | result == (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
-	 * 
-	 * 
+	 * writable
 	 */
 	
+//	private boolean writable = true;  /* when the file is created it's always writable. 
+//	
+//	/**
+//	 * gives a 'true' or 'false' to the field writable. 
+//	 * 
+//	 * @param	writable
+//	 * 			paramter that determines if a file is writable or not.
+//	 */
+//	private boolean setWriteable(boolean writeable) {
+//		
+//		
+//	}
+//	
+//	/**
+//	 * private function returning True or False depending on the file being writable or not. 
+//	 */
+//	private boolean isWritable() {
+//		
+//	}
 
+	public static void main(String [ ] args){
+		String name = "test";
+		File file1 = new File(name);
+		String time = file1.TimeCreated();
+		System.out.println(time);
+		file1.setName("Peter");
+		String mod = file1.lastModified(); 
+		System.out.println(mod);
+	}
 		
 
 }
