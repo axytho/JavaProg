@@ -31,8 +31,9 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
-	/*  code nog uitwerken. 	
-	 */
+		/* er moet hier nog de name komen */
+		this.size = size;
+		/* schrijf hier nog defensief het schrijfrecht*/
 		
 	}
 	
@@ -46,6 +47,7 @@ public class File {
 	 * 
 	 */
 	File(String name){
+		this(name, 0, true);
 	/*  code nog uitwerken. 	
 	 */
 		
@@ -160,13 +162,13 @@ public class File {
 	 * 		  The file size to check
 	 * 
 	 * @return True if the file size is positive and less than the maximum value, False otherwise
-	 * 		   | result == (fileSize > 0) && (filesize < Integer.MAX_VALUE)
+	 * 		   | result == (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
 	 * 
 	 * 
 	 */
 	
 	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize > 0) && (filesize < Integer.MAX_VALUE)
+		return (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
 	}
 	
 }
