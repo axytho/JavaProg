@@ -5,7 +5,7 @@ import be.kuleuven.cs.som.annotate.*;
  * When file is made the date is retained and a file can be write-able or not
  * 
  * 
- * @invar File size must be valid | isValidFileSize(getFileSize()
+ * @invar File size must be valid | isValidFileSize(getFileSize())
  * 
  * @invar 
  * 
@@ -31,6 +31,8 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
+		setWriteable(writable);
+		
 	/*  code nog uitwerken. 	
 	 */
 		
@@ -51,13 +53,17 @@ public class File {
 		
 	}
 	
+	/** 
+	 * private field name
+	 */
+	private String name; 
 	
 	/**
 	 * Returns the name of the file
 	 */
 	
-	@basic public String getName() {
-		
+	 public String getName() {
+		 return this.name; 	
 	}
 	
 	/** 
@@ -65,15 +71,21 @@ public class File {
 	 * @param	name 
 	 * 			The name given to the file
 	 * @post 	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
-	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.
+	 * 			it will be used as a name, else .
+	 * 			when the string has length 0, the name will be "name". 
 	 */
 	public void setName(String name) {
-	/* schrijfrechten controleren 
-	 * 
-	 * code nog uitwerken. 
-	 * modification time aanpassen. 
-	 */
-		
+		if (this.isWritable() == true) {
+			if (name.length() == 0) {
+				this.name = "name";
+			}else {
+				if (name.matches("[a-zA-Z_0-9 && [\\] && [.] && [-] && [_]")) {
+					this.name = name; 	
+				}else {
+					this.name = "name";
+				}
+			}
+		}
 	}
 	
 	/*
@@ -90,16 +102,11 @@ public class File {
 
 	/**
 	 * Returns the  size of our file
-	 * The size is the amount of bytes a file takes up on this computer
-	 * 
-	 * 
 	 */
 	
-	@Raw @basic public int getSize() {
+	public int getSize() {
 		return this.size;
 	}
-	
-	
 	
 	/**
 	 * Sets the size of our file
@@ -120,7 +127,7 @@ public class File {
 	}
 	
 	/** 
-	 * Increase the size of the file with the amount of bytes given
+	 * Increase the size of the file with the amount of bites given
 	 * 
 	 *@param		bytes
 	 *			The number of bytes to be added
@@ -134,7 +141,7 @@ public class File {
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
-	 * 1 keer geimplementeerd worden. 	
+	 * 1 keer geimplementeerd worden. ≤	
 	 */
 			
 	}
@@ -154,19 +161,27 @@ public class File {
 	}
 	
 	/**
-	 * Checks whether the given file size is a valid size for the file
-	 * 
-	 * @param fileSize
-	 * 		  The file size to check
-	 * 
-	 * @return True if the file size is positive and less than the maximum value, False otherwise
-	 * 		   | result == (fileSize > 0) && (filesize < Integer.MAX_VALUE)
-	 * 
-	 * 
+	 * writable
 	 */
 	
-	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize > 0) && (filesize < Integer.MAX_VALUE)
-	}
+//	private boolean writable = true;  /* when the file is created it's always writable. 
+//	
+//	/**
+//	 * gives a 'true' or 'false' to the field writable. 
+//	 * 
+//	 * @param	writable
+//	 * 			paramter that determines if a file is writable or not.
+//	 */
+//	private boolean setWriteable(boolean writeable) {
+//		
+//		
+//	}
+//	
+//	/**
+//	 * private function returning True or False depending on the file being writable or not. 
+//	 */
+//	private boolean isWritable() {
+//		
+//	}
 	
 }
