@@ -53,7 +53,7 @@ public class File {
 	 * 			Name given to file 
 	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.
-	 * @effect 	An empty, writeable file with the given name
+	 * @effect 	An empty, writeable file with the given name is initialized
 	 * 
 	 */
 	File(String name){
@@ -107,6 +107,32 @@ public class File {
 			}
 	}
 	
+	
+	/**
+<<<<<<< HEAD
+	 * writable
+	 */
+	
+//	private boolean writable = true;  /* when the file is created it's always writable. 
+//	
+//	/**
+//	 * gives a 'true' or 'false' to the field writable. 
+//	 * 
+//	 * @param	writable
+//	 * 			paramter that determines if a file is writable or not.
+//	 */
+//	private boolean setWriteable(boolean writeable) {
+//		
+//		
+//	}
+//	
+//	/**
+//	 * private function returning True or False depending on the file being writable or not. 
+//	 */
+//	private boolean isWritable() {
+//		
+//	}
+	
 	/*
 	 * All classes related to the size of the file
 	 */
@@ -117,9 +143,11 @@ public class File {
 
 	/**
 	 * Returns the  size of our file
+	 * 
+	 * 
 	 */
 	
-	public int getSize() {
+	@Raw public int getSize() {
 		return this.size;
 	}
 	
@@ -127,9 +155,14 @@ public class File {
 	 * Sets the size of our file
 	 * @param	bytes 
 	 * 			The new size of the file
+	 * 
+	 * @pre 	The given size must be a valid size for the file | isValidFileSize(bytes)
+	 * 
 	 * 			
 	 * @post	If a change of size results in a number of bytes higher than the maximum of lower than zero,
 	 * 			then the number of bytes is set to the max or 0 respectively. 
+	 * 			| new.getSize() == bytes 
+	 * 
 	 */
 	private void setSize(int bytes) {
 		this.size = bytes;
@@ -184,30 +217,12 @@ public class File {
 
 	}
 	
-	/**
-<<<<<<< HEAD
-	 * writable
-	 */
+
 	
-//	private boolean writable = true;  /* when the file is created it's always writable. 
-//	
-//	/**
-//	 * gives a 'true' or 'false' to the field writable. 
-//	 * 
-//	 * @param	writable
-//	 * 			paramter that determines if a file is writable or not.
-//	 */
-//	private boolean setWriteable(boolean writeable) {
-//		
-//		
-//	}
-//	
-//	/**
-//	 * private function returning True or False depending on the file being writable or not. 
-//	 */
-//	private boolean isWritable() {
-//		
-//	}
+	
+	public static boolean isValidFileSize(int fileSize) {
+		return (fileSize >= 0) && (filesize < this.maxvalue)
+	}
 
 	public static void main(String [ ] args){
 		String name = "go-%ede_man."; 
@@ -226,9 +241,7 @@ public class File {
 	 * 
 	 */
 	
-	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize >= 0) && (filesize < this.maxvalue)
-	}
+
 		
 
 }
