@@ -224,7 +224,7 @@ public class File {
 		File file1 = new File(name); 
 		System.out.println(file1.getName());
 		System.out.println(file1.getSize());
-=======
+	/**
 	 * Checks whether the given file size is a valid size for the file
 	 * 
 	 * @param fileSize
@@ -238,7 +238,6 @@ public class File {
 	
 	public static boolean isValidFileSize(int fileSize) {
 		return (fileSize >= 0) && (filesize < this.maxvalue)
->>>>>>> AxythoBranch
 	}
 		
 
