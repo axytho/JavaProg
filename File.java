@@ -31,10 +31,9 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
-		setWriteable(writable);
+		setName(name);
+		//setWriteable(writable);
 		
-	/*  code nog uitwerken. 	
-	 */
 		
 	}
 	
@@ -48,8 +47,9 @@ public class File {
 	 * 
 	 */
 	File(String name){
-	/*  code nog uitwerken. 	
-	 */
+		setName(name);
+		setSize(0);
+		
 		
 	}
 	
@@ -57,6 +57,15 @@ public class File {
 	 * private field name
 	 */
 	private String name; 
+	/**
+	 * Variable representing the size of the file
+	 */
+	private int size;
+	
+	/**
+	 * private field for writable
+	 */
+	private final boolean writable = true; 
 	
 	/**
 	 * Returns the name of the file
@@ -65,6 +74,9 @@ public class File {
 	 public String getName() {
 		 return this.name; 	
 	}
+	 
+	 
+	 
 	
 	/** 
 	 * Gives the file a new name
@@ -75,28 +87,22 @@ public class File {
 	 * 			when the string has length 0, the name will be "name". 
 	 */
 	public void setName(String name) {
-		if (this.isWritable() == true) {
 			if (name.length() == 0) {
 				this.name = "name";
 			}else {
-				if (name.matches("[a-zA-Z_0-9 && [\\] && [.] && [-] && [_]")) {
+				if (name.matches("[a-zA-Z_0-9[-.]]*")) {
 					this.name = name; 	
 				}else {
 					this.name = "name";
 				}
 			}
-		}
 	}
 	
 	/*
 	 * All classes related to the size of the file
 	 */
 	
-	/**
-	 * Variable representing the size of the file
-	 */
-	private int size;
-	
+
 	
 	
 
@@ -183,5 +189,14 @@ public class File {
 //	private boolean isWritable() {
 //		
 //	}
-	
+
+	public static void main(String [ ] args){
+		String name = "go-%ede_man."; 
+		File file1 = new File(name); 
+		System.out.println(file1.getName());
+		System.out.println(file1.getSize());
+	}
+		
+
 }
+
