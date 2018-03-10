@@ -153,4 +153,20 @@ public class File {
 
 	}
 	
+	/**
+	 * Checks whether the given file size is a valid size for the file
+	 * 
+	 * @param fileSize
+	 * 		  The file size to check
+	 * 
+	 * @return True if the file size is positive and less than the maximum value, False otherwise
+	 * 		   | result == (fileSize > 0) && (filesize < Integer.MAX_VALUE)
+	 * 
+	 * 
+	 */
+	
+	public static boolean isValidFileSize(int fileSize) {
+		return (fileSize > 0) && (filesize < Integer.MAX_VALUE)
+	}
+	
 }
