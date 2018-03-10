@@ -31,11 +31,24 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
+<<<<<<< HEAD
 		setName(name);
 		//setWriteable(writable);
 		
+=======
+		/* er moet hier nog de name komen */
+		this.size = size;
+		/* schrijf hier nog defensief het schrijfrecht*/
+>>>>>>> AxythoBranch
 		
 	}
+	
+	/**
+	 * Creates a parameter maxvalue which for now is equal to the largest possible integer
+	 * but which can be easily changed in the future.
+	 */
+	
+	private int maxvalue = Integer.MAX_VALUE;
 	
 	
 	/** Creates a new writeable file with the given name
@@ -47,9 +60,15 @@ public class File {
 	 * 
 	 */
 	File(String name){
+<<<<<<< HEAD
 		setName(name);
 		setSize(0);
 		
+=======
+		this(name, 0, true);
+	/*  code nog uitwerken. 	
+	 */
+>>>>>>> AxythoBranch
 		
 	}
 	
@@ -128,6 +147,9 @@ public class File {
 	 * 
 	 * controleren of maximale grootte niet overschreden, niet beneden 0..
 	 * modification time aanpassen 
+	 * 
+	 * @Frederik: mag private zijn maar dit wordt nominaal geprogrammeerd dus is het niet aan mij
+	 *  om te checken dat aan de voorwaarden worden voldaan
 	 */
 		
 	}
@@ -138,12 +160,18 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
+	 *@pre 		The size of the file must be a valid size
+	 *			| isValidFileSize(size)
+	 *
 	 *@post		The size of the file changed correctly if the number of bytes does not surpass
 	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
-	 *			the maximum number of bytes.
+	 *			the maximum number of bytes. 
+	 *			| new.getSize() = this.getSize() + bytes
+	 *			
 	 */
 	
-	public void enlarge(int bytes) {		
+	public void enlarge(int bytes) {
+		
 	/* schrijfrechten cotroleren 
 	 *  
 	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
@@ -167,6 +195,7 @@ public class File {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * writable
 	 */
 	
@@ -195,6 +224,21 @@ public class File {
 		File file1 = new File(name); 
 		System.out.println(file1.getName());
 		System.out.println(file1.getSize());
+=======
+	 * Checks whether the given file size is a valid size for the file
+	 * 
+	 * @param fileSize
+	 * 		  The file size to check
+	 * 
+	 * @return True if the file size is positive and less than the maximum value, False otherwise
+	 * 		   | result == (fileSize >= 0) && (filesize < Integer.MAX_VALUE)
+	 * 
+	 * 
+	 */
+	
+	public static boolean isValidFileSize(int fileSize) {
+		return (fileSize >= 0) && (filesize < this.maxvalue)
+>>>>>>> AxythoBranch
 	}
 		
 
