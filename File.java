@@ -139,6 +139,10 @@ public class File {
 	/*
 	 * All classes related to the size of the file
 	 */
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 7ac0a1a... Apperently maxvalue got destroyed by git
 
 	/**
 	 * Returns the  size of our file
