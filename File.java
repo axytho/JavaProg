@@ -73,7 +73,7 @@ public class File {
 	/**
 	 * Variable representing the size of the file
 	 */
-	private int size;
+
 	
 
 	
@@ -175,6 +175,10 @@ public class File {
 	/*
 	 * All classes related to the size of the file
 	 */
+	
+	private int size;
+	
+	private final int maxvalue;
 
 
 	/**
