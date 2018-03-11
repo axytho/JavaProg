@@ -3,10 +3,10 @@ import org.junit.*;
 
 public class FileTest {
 	/* This is for static methods */
-	@BeforeClass public static void setupStaticMethod() {
-
-		/* for testing has Overlapping User period */
-	}
+//	@BeforeClass public static void setupStaticMethod() {
+//
+//		/* for testing has Overlapping User period */
+//	}
 	
 	private File helloWorld42Writeable, helloWorld44Writeable, helloWorld42NotWriteable, helloWorld43Writeable;
 
@@ -19,6 +19,9 @@ public class FileTest {
 		
 		helloWorld42NotWriteable = new File("helloWorld" , 42, false);
 		
+	}
+	@Test public final void testTrue() {
+		assertTrue(true);
 	}
 	
 	@Test public final void testSmallConstructor() {
@@ -57,7 +60,7 @@ public class FileTest {
 	
 	@Test public final void testEnlarge() {
 		helloWorld43Writeable.enlarge(5);
-		assertEquals(48, helloWorld42Writeable.getSize());
+		assertEquals(48, helloWorld43Writeable.getSize());
 	}	
 	
 	@Test public final void testCanAcceptForEnlarge() {
