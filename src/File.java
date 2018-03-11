@@ -207,8 +207,6 @@ public class File {
 	 * @return whether the function is writable
 	 */
 	public boolean isWritable() {
-		System.out.println("Hi");
-		System.out.println(writable);
 		return writable;
 	}
 	
@@ -361,22 +359,23 @@ public class File {
 	}
 
 	public static void main(String[] args){
+		File helloWorld44Writeable = new File("helloWorld", 44, true);
+		helloWorld44Writeable.canAcceptForEnlarge(500);
 		String name = "testName"; 
 		File file1 = new File(name,3,false); 
 		String naam = file1.getName(); 
 		System.out.println(naam);
 		FileTest test = new FileTest();
 		test.testSmallConstructor();
-		test.testCanAcceptForEnlarge();
-		test.testCanAcceptForShorten();
-		test.testEnlarge();
-		test.testShorten();
 		test.testIsValidFileSize();
 		test.testSetNameIllegalCase();
 		test.testSetNameIllegalCaseNW();
 		test.testSetNameLegalCase();
 		test.testShortenIllegalCaseNW();
-		
+		test.testCanAcceptForEnlarge();
+		test.testCanAcceptForShorten();
+		test.testEnlarge();
+		test.testShorten();	
 /*		long period = file1.userPeriod(); */
 /*		System.out.println(period); */
 	}

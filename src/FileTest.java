@@ -80,6 +80,10 @@ public class FileTest {
 		assertFalse(File.isValidFileSize(Integer.MAX_VALUE));
 	}
 	
+	@Test public final void testUserPeriod() {
+		
+	}
+	
 	
 	
 }
