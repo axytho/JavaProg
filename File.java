@@ -41,7 +41,6 @@ public class File {
 	File(String name, int size, boolean writable){
 		setName(name);
 		setWriteable(writable);
-		this.maxvalue = Integer.MAX_VALUE;
 		/* er moet hier nog de name komen */
 		this.size = size;
 
@@ -102,14 +101,14 @@ public class File {
 	 * @post 	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else .
 	 * 			when the string has length 0, the name will be "name". 
-	 * @throws	NoAccessRightsException()
+	 * @throws	NoWritingRightsException()
 	 * 			If the file is not writable, throws an exception
 	 * 			| isWritable()
 	 * 
 	 */
-	public void setName(String name) throws NoAccessRightsException {
+	public void setName(String name) throws NoWritingRightsException {
 			if (!this.isWritable()) {
-				throw new NoAccessRightsException();
+				throw new NoWritingRightsException(true);
 			}
 			if (name.length() == 0) {
 				this.name = "name";
@@ -198,7 +197,7 @@ public class File {
 	
 	private int size;
 	
-	private static final int maxvalue;
+	private static final int maxvalue = Integer.MAX_VALUE;
 
 
 
