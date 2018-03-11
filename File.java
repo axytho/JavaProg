@@ -101,9 +101,10 @@ public class File {
 	 * @post 	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else .
 	 * 			when the string has length 0, the name will be "name". 
-	 * @throws	NoWritingRightsException()
-	 * 			If the file is not writable, throws an exception
-	 * 			| isWritable()
+	 * @throws	NoWritingRightsException(true)
+	 * 			If the file is not writable, throws an exception with true to indicate that
+	 * 			the exception is due to an attempted name change
+	 * 			| ! isWritable()
 	 * 
 	 */
 	public void setName(String name) throws NoWritingRightsException {
@@ -216,8 +217,16 @@ public class File {
 	 * 			
 	 * @post	If a change of size results in a number of bytes higher than the maximum of lower than zero,
 	 * 			then the number of bytes is set to the max or 0 respectively. 
+	 * 
+	 * @throws	NoWritingRightsException(true)
+	 * 			If the file is not writable, throws an exception with false to indicate that
+	 * 			the exception is due to an attempted name change
+	 * 			| ! isWritable()
 	 */
 	private void setSize(int bytes) {
+		if (!isWritable())	{
+			throw new NoWritingRightsException(false);
+		}
 		this.size = bytes;
 
 		
