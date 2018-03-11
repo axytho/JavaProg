@@ -31,7 +31,7 @@ public class File {
 	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.	
 	 * 			 
-	 * @pre 	The total size must be lower than the max size.
+	 * 
 	 * @effect 	The size of the file is set. 
 	 * 
 	 */
