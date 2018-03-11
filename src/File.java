@@ -173,9 +173,9 @@ public class File {
 		if (other.modificationTime == null || this.modificationTime == null) {
 			return false;}else {
 				if (this.modificationTime.before(other.creationTime) || other.modificationTime.before(this.creationTime)) {
-					return true; 
-				}else {
 					return false; 
+				}else {
+					return true; 
 				}
 			}
 					
