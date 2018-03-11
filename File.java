@@ -39,8 +39,9 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
-		setName(name);
 		setWriteable(writable);
+		setName(name);
+		
 		/* er moet hier nog de name komen */
 		this.size = size;
 
