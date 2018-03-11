@@ -130,7 +130,7 @@ public class File {
 	
 	private Date creationTime = null;
 	private Date modificationTime = null; 
-	private String userPeriod; 
+	private long userPeriod; 
 	
 	
 	/**
@@ -153,8 +153,8 @@ public class File {
 		if (this.modificationTime == null) {
 			return 0;
 		}else {
-			long Diff = this.creationTime.getTime() - this.modificationTime.getTime(); 
-			return Diff; 
+			this.userPeriod = this.creationTime.getTime() - this.modificationTime.getTime(); 
+			return this.userPeriod; 
 		}
 	}
 	
