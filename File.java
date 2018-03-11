@@ -96,8 +96,10 @@ public class File {
 	 * @post 	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else .
 	 * 			when the string has length 0, the name will be "name". 
+	 * @throws	NoAccessRightsException()
+	 * 
 	 */
-	public void setName(String name) {
+	public void setName(String name) throws NoAccessRightsException {
 			if (name.length() == 0) {
 				this.name = "name";
 			}else {
