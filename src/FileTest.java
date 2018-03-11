@@ -41,8 +41,21 @@ public class FileTest {
 		fail("WorkingAsExpected");
 	}
 	
+	@Test (expected = NoWritingRightsException.class)
+	public final void testShortenIllegalCaseNW() {
+		helloWorld42NotWriteable.shorten(5);
+		fail("WorkingAsExpected");
+	}
+		
+	@Test public final void testShorten() {
+		helloWorld42Writeable.shorten(5);
+		assertEquals(37, helloWorld42Writeable.getSize());
+	}	
 	
-	
+	@Test public final void testEnlarge() {
+		helloWorld43Writeable.enlarge(5);
+		assertEquals(48, helloWorld42Writeable.getSize());
+	}	
 	
 	
 	

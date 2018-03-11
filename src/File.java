@@ -166,7 +166,7 @@ public class File {
 	 */
 	public boolean hasOverlappingUserperiod(File other) {
 		
-		return true;
+		return true; /* @Frederik MOETNOGVERANDERTWORDEN*/
 	}
 	
 	/**
