@@ -1,4 +1,7 @@
-package practica;
+
+/**
+ * package practica; @Frederik wat doet dit hier 
+ */
 import java.util.Date;
 
 import be.kuleuven.cs.som.annotate.*;
@@ -38,7 +41,7 @@ public class File {
 	File(String name, int size, boolean writable){
 		setName(name);
 		setWriteable(writable);
-
+		this.maxvalue = Integer.MAX_VALUE;
 		/* er moet hier nog de name komen */
 		this.size = size;
 
@@ -59,12 +62,15 @@ public class File {
 	 * 
 	 */
 	File(String name){
+		this(name, 0, true);
 		this.creationTime = timeStamp();  
-		/* @Frederick the right way of making a new constructor */
-		this(name, 0, True);
-		
-		
 	}
+		
+		/* @Frederick the right way of making a new constructor */
+		
+		
+		
+	
 	
 	/** 
 	 * private field name
@@ -102,8 +108,9 @@ public class File {
 	 * 
 	 */
 	public void setName(String name) throws NoAccessRightsException {
-			if (!isWritable)
-				throw new NoAccessRightsException
+			if (!this.isWritable()) {
+				throw new NoAccessRightsException();
+			}
 			if (name.length() == 0) {
 				this.name = "name";
 			}else {
@@ -120,12 +127,13 @@ public class File {
 	
 
 	public String TimeCreated() {
-		return this.creationTime; 
+		return this.creationTime;
 	}
 	
 	
 	public boolean hasOverlappingUserperiod() {
-		
+		/* @Frederik placeholder so no errors*/
+		return true;
 	}
 	
 	/**
@@ -146,7 +154,7 @@ public class File {
 	 * @param	writeable
 	 * 			Parameter which determines whether a file can be edited.
 	 */
-	public boolean setWriteable(boolean writeable) {
+	public void setWriteable(boolean writeable) {
 		this.writable = writeable;
 	}
 	
@@ -190,7 +198,7 @@ public class File {
 	
 	private int size;
 	
-	private final int maxvalue;
+	private static final int maxvalue;
 
 
 
@@ -235,6 +243,7 @@ public class File {
 	
 	public void enlarge(int bytes) {
 		this.setSize(bytes + size);
+	}
 	
 	/** 
 	 * Decrease the size of the file with the amount of bites given
@@ -265,7 +274,7 @@ public class File {
 	 */
 	
 	public boolean canAcceptForEnlarge(int bytes) {
-		return (isValidFileSize(size + bytes) && isWritable() && bytes>0)
+		return (isValidFileSize(size + bytes) && isWritable() && bytes>0);
 	}
 	/**
 	 * @param	bytes
@@ -276,7 +285,7 @@ public class File {
 	 */
 	
 	public boolean canAcceptForShorten(int bytes) {
-		return (isValidFileSize(size - bytes) && isWritable() && bytes>0)
+		return (isValidFileSize(size - bytes) && isWritable() && bytes>0);
 	}
 
 	/**
@@ -293,16 +302,17 @@ public class File {
 	 */
 	
 	public static boolean isValidFileSize(int fileSize) {
-		return (fileSize >= 0) && (filesize < this.maxvalue)
+		return (fileSize >= 0) && (fileSize < maxvalue);
 	}
 
-	public static void main(String [ ] args){
+	public static void main(String[] args){
 		String name = "go-%ede_man."; 
 		File file1 = new File(name); 
 		System.out.println(file1.getName());
 		System.out.println(file1.getSize());
+	}
 
-	
+}	
 //	private boolean writable = true;  /* when the file is created it's always writable. 
 //	
 //	/**
@@ -322,18 +332,18 @@ public class File {
 //	private boolean isWritable() {
 //		
 //	}
->>>>>>> 9933f653062b4e6eabe0ba22bf1934a6904a34b0
 
-	public static void main(String [ ] args){
-		String name = "test";
-		File file1 = new File(name);
-		String time = file1.TimeCreated();
-		System.out.println(time);
-		file1.setName("Peter");
-		String mod = file1.lastModified(); 
-		System.out.println(mod);
-	}
+
+//	public static void main(String [ ] args){
+//		String name = "test";
+//		File file1 = new File(name);
+//		String time = file1.TimeCreated();
+//		System.out.println(time);
+//		file1.setName("Peter");
+//		String mod = file1.lastModified(); 
+//		System.out.println(mod);
+//	}
 		
 
-}
+
 
