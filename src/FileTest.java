@@ -8,7 +8,8 @@ public class FileTest {
 //		/* for testing has Overlapping User period */
 //	}
 	
-	private File helloWorld42Writeable, helloWorld44Writeable, helloWorld42NotWriteable, helloWorld43Writeable;
+	private File helloWorld42Writeable, helloWorld44Writeable, helloWorld42NotWriteable, 
+	helloWorld43Writeable, timeTest1, timeTest2, timeTest3;
 
 	/*This is for instance methods */
 	/*We'll use to test the size  */
@@ -17,8 +18,12 @@ public class FileTest {
 		helloWorld43Writeable = new File("helloWorld", 43, true);
 		helloWorld44Writeable = new File("helloWorld", 44, true);
 		
-		helloWorld42NotWriteable = new File("helloWorld" , 42, false);
+		helloWorld42NotWriteable = new File("helloWorld", 42, false);
 		
+		timeTest1 = new File("time", 1, true);
+		timeTest3 = new File("time", 3, true);
+		timeTest1.setName("nextTime");
+		timeTest2 = new File("time", 2, true);
 	}
 	@Test public final void testTrue() {
 		assertTrue(true);
@@ -81,7 +86,8 @@ public class FileTest {
 	}
 	
 	@Test public final void testUserPeriod() {
-		
+		assertFalse(timeTest1.hasOverlappingUserperiod(timeTest2));
+		assertTrue(timeTest1.hasOverlappingUserperiod(timeTest3));
 	}
 	
 	

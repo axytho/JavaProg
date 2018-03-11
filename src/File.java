@@ -365,17 +365,24 @@ public class File {
 		File file1 = new File(name,3,false); 
 		String naam = file1.getName(); 
 		System.out.println(naam);
-		FileTest test = new FileTest();
-		test.testSmallConstructor();
-		test.testIsValidFileSize();
-		test.testSetNameIllegalCase();
-		test.testSetNameIllegalCaseNW();
-		test.testSetNameLegalCase();
-		test.testShortenIllegalCaseNW();
-		test.testCanAcceptForEnlarge();
-		test.testCanAcceptForShorten();
-		test.testEnlarge();
-		test.testShorten();	
+		//FileTest test = new FileTest();
+		
+		
+//		test.testSmallConstructor();
+//		test.testIsValidFileSize();
+		
+		/*the tests which contain an instance of the class and are called from here result in a 
+		 * nullpointer error, and I don't know why, but the tests themselves work
+		 * perfectly according to the debugger.
+		 */
+//		test.testSetNameIllegalCase();
+//		test.testSetNameIllegalCaseNW();
+//		test.testSetNameLegalCase();
+//		test.testShortenIllegalCaseNW();
+//		test.testCanAcceptForEnlarge();
+//		test.testCanAcceptForShorten();
+//		test.testEnlarge();
+//		test.testShorten();	
 /*		long period = file1.userPeriod(); */
 /*		System.out.println(period); */
 	}
