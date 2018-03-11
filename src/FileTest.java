@@ -33,12 +33,12 @@ public class FileTest {
 
 	@Test public final void testSetNameIllegalCase() {
 		helloWorld42Writeable.setName("#42ISTHEONLYANSWER");
-		assertEquals("name", helloWorld42Writeable);
+		assertEquals("name", helloWorld42Writeable.getName());
 	}
 	
 	@Test public final void testSetNameLegalCase() {
-		helloWorld43Writeable.setName("43ISTHEWRONGANSWER.-_azer");
-		fail("THISSHOULDNOTHAPPEN");
+		helloWorld43Writeable.setName("43.-_aZer");
+		assertEquals("43.-_aZer", helloWorld43Writeable.getName());
 	}
 	
 	@Test (expected = NoWritingRightsException.class)

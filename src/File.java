@@ -41,9 +41,11 @@ public class File {
 	 * 
 	 */
 	File(String name, int size, boolean writable){
+		setWriteable(true);
+		setName(name);
 		setWriteable(writable);
 		
-		setName(name);
+		
 		
 		/* er moet hier nog de name komen */
 		this.size = size;
@@ -358,9 +360,9 @@ public class File {
 		return (fileSize >= 0) && (fileSize < maxvalue);
 	}
 
-	public static void main(String[ ] args){
+	public static void main(String[] args){
 		String name = "testName"; 
-		File file1 = new File(name,3,true); 
+		File file1 = new File(name,3,false); 
 		String naam = file1.getName(); 
 		System.out.println(naam);
 		FileTest test = new FileTest();
@@ -374,8 +376,9 @@ public class File {
 		test.testSetNameIllegalCaseNW();
 		test.testSetNameLegalCase();
 		test.testShortenIllegalCaseNW();
-		//String period = file1.userPeriod(); 
-		//System.out.println(period);
+		
+/*		long period = file1.userPeriod(); */
+/*		System.out.println(period); */
 	}
 
 }	
