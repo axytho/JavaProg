@@ -9,7 +9,7 @@ public class FileTest {
 	
 	private File helloWorld42Writeable, helloWorldemptyWriteable, helloWorld42NotWriteable, helloWorld43Writeable;
 	/*This is for instance methods */
-	/*We'll use to test the size */
+	/*We'll use to test the size  */
 	@Before public void setUp() {
 		helloWorld42Writeable = new File("helloWorld", 42, true);
 		helloWorld43Writeable = new File("helloWorld", 43, true);
@@ -24,16 +24,26 @@ public class FileTest {
 		assertTrue(newFile.isWritable());
 	}
 	
-	@Test (expected = NoWritingRightsException.class)
-	public final void testSetNameIllegalCase() {
+
+	@Test public final void testSetNameIllegalCase() {
 		helloWorld42Writeable.setName("#42ISTHEONLYANSWER");
-		fail("WorkingAsIntended");
+		assertEquals("name", helloWorld42Writeable);
 	}
 	
-	public final void testSetNameLegalCase() {
+	@Test public final void testSetNameLegalCase() {
 		helloWorld43Writeable.setName("43ISTHEWRONGANSWER.-_azer");
 		fail("THISSHOULDNOTHAPPEN");
 	}
+	
+	@Test (expected = NoWritingRightsException.class)
+	public final void testSetNameIllegalCaseNW() {
+		helloWorld42NotWriteable.setName("name");
+		fail("WorkingAsExpected");
+	}
+	
+	
+	
+	
 	
 	
 }

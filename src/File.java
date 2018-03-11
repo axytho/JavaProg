@@ -1,4 +1,7 @@
 
+/**
+ * package practica; @Frederik wat doet dit hier 
+ */
 import java.util.Date;
 
 import be.kuleuven.cs.som.annotate.*;
@@ -38,7 +41,6 @@ public class File {
 	File(String name, int size, boolean writable){
 		setWriteable(writable);
 		setName(name);
-
 		
 		/* er moet hier nog de name komen */
 		this.size = size;
@@ -107,6 +109,7 @@ public class File {
 			}else {
 				if (name.matches("[a-zA-Z_0-9[-.]]*")) {
 					this.name = name; 	
+					
 				}else {
 					this.name = "name";
 				}
