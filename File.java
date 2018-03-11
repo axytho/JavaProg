@@ -24,7 +24,10 @@ public class File {
 	 * @param	size
 	 * 			Size of file expressed in bytes.
 	 * @param	writable
-	 * 			Depens on whether the file is writeable or not
+	 * 			Depends on whether the file is writeable or not
+	 * 
+	 * @pre 	The given size is a valid file size | isValidFileSize()
+	 * 
 	 * @post	If the input string consists of upper and lowercase letters, numbers, underscores, hyphens and dots,
 	 * 			it will be used as a name, else the characters not conforming the the constrictions will be removed.	
 	 * 			 
@@ -34,11 +37,15 @@ public class File {
 	 */
 	File(String name, int size, boolean writable){
 		setName(name);
+		setWriteable(writable);
+
+		/* er moet hier nog de name komen */
+		this.size = size;
+
 		this.creationTime = timeStamp();  
 		
 		
-		//setWriteable(writable);
-		
+
 		
 	}
 	
@@ -52,9 +59,9 @@ public class File {
 	 * 
 	 */
 	File(String name){
-		setName(name);
 		this.creationTime = timeStamp();  
-		setSize(0);
+		/* @Frederick the right way of making a new constructor */
+		this(name, 0, True);
 		
 		
 	}
@@ -66,12 +73,8 @@ public class File {
 	/**
 	 * Variable representing the size of the file
 	 */
-	private int size;
+
 	
-	/**
-	 * private field for writable
-	 */
-	private final boolean writable = true; 
 
 	
 	private String creationTime = null;
@@ -114,6 +117,39 @@ public class File {
 		return this.creationTime; 
 	}
 	
+	/**
+	 * All classes related to writable
+	 */
+	
+	/**
+	 * A boolean which states wether a given file is writeable
+	 */
+	private boolean writable; /* when the file is created it's always writable. @Frederick, you should
+	do that in the constructor, not the initialization */
+	
+	
+	/**
+
+	 * Sets the attribute to the boolean 'writeable'
+	 * 
+	 * @param	writeable
+	 * 			Parameter which determines whether a file can be edited.
+	 */
+	public boolean setWriteable(boolean writeable) {
+		this.writable = writeable;
+	}
+	
+	/**
+	 * @return whether the function is writable
+	 */
+	public boolean isWritable() {
+		return writable;
+	}
+	
+
+	
+
+	
 	
 	/**
 	 * 
@@ -140,9 +176,17 @@ public class File {
 	 * All classes related to the size of the file
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of 7ac0a1a... Apperently maxvalue got destroyed by git
+=======
+	
+	private int size;
+	
+	private final int maxvalue;
+
+>>>>>>> parent of 2e65d14... meest recente versie ivm naamgeving.
 
 	/**
 	 * Returns the  size of our file
@@ -162,11 +206,7 @@ public class File {
 	 */
 	private void setSize(int bytes) {
 		this.size = bytes;
-	/* @jonas: private gemaakt omdat het de bedoeling is de size aan te passen via enlarge/shorten
-	 * 
-	 * controleren of maximale grootte niet overschreden, niet beneden 0..
-	 * modification time aanpassen 
-	 */
+
 		
 	}
 	
@@ -176,37 +216,86 @@ public class File {
 	 *@param		bytes
 	 *			The number of bytes to be added
 	 *			
+
+	 *@pre 		The new size of the file must be a valid size and must be writable
+	 *			| canAcceptForEnlarge(bytes)
+	 *
 	 *@post		The size of the file changed correctly if the number of bytes does not surpass
 	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
-	 *			the maximum number of bytes.
+	 *			the maximum number of bytes. 
+	 *			| new.getSize() == this.getSize() + bytes
+	 *			
 	 */
 	
-	public void enlarge(int bytes) {		
-	/* schrijfrechten cotroleren 
-	 *  
-	 * In deze methodes gebruik maken van setsize, op die manier moeten alles rond modification time maar 
-	 * 1 keer geimplementeerd worden. ≤	
-	 */
-			
-	}
-	
+	public void enlarge(int bytes) {
+		this.setSize(bytes + size);
 	
 	/** 
 	 * Decrease the size of the file with the amount of bites given
 	 * 
-	 * @param	bytes 
-	 * 			Number of bytes to be removed 
-	 * @post 	The size of the file changed correctly if the number of bytes is not less than 0.
-	 * 			If this is not the case, the resulting number of bytes will be 0. 
+	 *@param		bytes
+	 *			The number of bytes to be added
+	 *			
+	 *@pre 		The size of the file must be a valid size and must be writable
+	 *			| canAcceptForShorten(bytes)
+	 *
+	 *@post		The size of the file changed correctly if the number of bytes does not surpass
+	 *			the maximum number of bytes. If this is not the case, the resulting number of bytes will be 
+	 *			the maximum number of bytes. 
+	 *			| new.getSize() == this.getSize() - bytes
+	 *			
 	 */
-	
 	public void shorten(int bytes) {
-
+		this.setSize(size - bytes);
 	}
 	
+
 	/**
-	 * writable
+	 * @param	bytes
+	 * 			The amount of bytes with which the file could be enlarged given a file size
+	 * 
+	 * @return	True if the new size is valid, the file is writable and the amount of bytes is positive.|
+	 * 			result == (isValidFileSize(size + bytes) && isWritable() && bytes>0)
 	 */
+	
+	public boolean canAcceptForEnlarge(int bytes) {
+		return (isValidFileSize(size + bytes) && isWritable() && bytes>0)
+	}
+	/**
+	 * @param	bytes
+	 * 			The amount of bytes with which the file could be shortened given a file size
+	 * 
+	 * @return	True if the new size is valid, the file is writable and the amount of bytes is positive.|
+	 * 			result == (isValidFileSize(size - bytes) && isWritable() && bytes>0)
+	 */
+	
+	public boolean canAcceptForShorten(int bytes) {
+		return (isValidFileSize(size - bytes) && isWritable() && bytes>0)
+	}
+
+	/**
+	 * Checks whether the given file size is a valid size for the file
+	 * 
+	 * @param fileSize
+	 * 		  The file size to check
+	 * 
+	 * @return	True if the file size is positive or 0 (file is empty) and less than the maximum value, 
+	 * 			False otherwise
+	 *			| result == (fileSize >= 0) && (filesize < this.maxvalue)
+	 * 
+	 * 
+	 */
+	
+	public static boolean isValidFileSize(int fileSize) {
+		return (fileSize >= 0) && (filesize < this.maxvalue)
+	}
+
+	public static void main(String [ ] args){
+		String name = "go-%ede_man."; 
+		File file1 = new File(name); 
+		System.out.println(file1.getName());
+		System.out.println(file1.getSize());
+
 	
 //	private boolean writable = true;  /* when the file is created it's always writable. 
 //	
@@ -227,6 +316,7 @@ public class File {
 //	private boolean isWritable() {
 //		
 //	}
+>>>>>>> 9933f653062b4e6eabe0ba22bf1934a6904a34b0
 
 	public static void main(String [ ] args){
 		String name = "test";
