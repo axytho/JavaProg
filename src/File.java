@@ -40,6 +40,7 @@ public class File {
 	 */
 	File(String name, int size, boolean writable){
 		setWriteable(writable);
+		
 		setName(name);
 		
 		/* er moet hier nog de name komen */
@@ -195,6 +196,8 @@ public class File {
 	 * @return whether the function is writable
 	 */
 	public boolean isWritable() {
+		System.out.println("Hi");
+		System.out.println(writable);
 		return writable;
 	}
 	
@@ -351,6 +354,17 @@ public class File {
 		File file1 = new File(name,3,true); 
 		String naam = file1.getName(); 
 		System.out.println(naam);
+		FileTest test = new FileTest();
+		test.testSmallConstructor();
+		test.testCanAcceptForEnlarge();
+		test.testCanAcceptForShorten();
+		test.testEnlarge();
+		test.testShorten();
+		test.testIsValidFileSize();
+		test.testSetNameIllegalCase();
+		test.testSetNameIllegalCaseNW();
+		test.testSetNameLegalCase();
+		test.testShortenIllegalCaseNW();
 		//String period = file1.userPeriod(); 
 		//System.out.println(period);
 	}
