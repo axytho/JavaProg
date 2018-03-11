@@ -4,16 +4,19 @@ import org.junit.*;
 public class FileTest {
 	/* This is for static methods */
 	@BeforeClass public static void setupStaticMethod() {
+
 		/* for testing has Overlapping User period */
 	}
 	
-	private File helloWorld42Writeable, helloWorldemptyWriteable, helloWorld42NotWriteable, helloWorld43Writeable;
+	private File helloWorld42Writeable, helloWorld44Writeable, helloWorld42NotWriteable, helloWorld43Writeable;
+
 	/*This is for instance methods */
 	/*We'll use to test the size  */
 	@Before public void setUp() {
 		helloWorld42Writeable = new File("helloWorld", 42, true);
 		helloWorld43Writeable = new File("helloWorld", 43, true);
-		helloWorldemptyWriteable = new File("helloWorld", 0, true);
+		helloWorld44Writeable = new File("helloWorld", 44, true);
+		
 		helloWorld42NotWriteable = new File("helloWorld" , 42, false);
 		
 	}
@@ -56,6 +59,23 @@ public class FileTest {
 		helloWorld43Writeable.enlarge(5);
 		assertEquals(48, helloWorld42Writeable.getSize());
 	}	
+	
+	@Test public final void testCanAcceptForEnlarge() {
+		assertTrue(helloWorld44Writeable.canAcceptForEnlarge(500));
+		assertFalse(helloWorld44Writeable.canAcceptForEnlarge(Integer.MAX_VALUE));
+		assertFalse(helloWorld44Writeable.canAcceptForEnlarge(-5));
+	}
+	
+	@Test public final void testCanAcceptForShorten() {
+		assertTrue(helloWorld44Writeable.canAcceptForShorten(44));
+		assertFalse(helloWorld44Writeable.canAcceptForShorten(45));
+		assertFalse(helloWorld44Writeable.canAcceptForShorten(0));
+	}
+	
+	@Test public final void testIsValidFileSize() {
+		assertTrue(File.isValidFileSize(0));
+		assertFalse(File.isValidFileSize(Integer.MAX_VALUE));
+	}
 	
 	
 	
