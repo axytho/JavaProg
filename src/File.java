@@ -3,6 +3,7 @@
  * package practica; @Frederik wat doet dit hier 
  */
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -358,13 +359,23 @@ public class File {
 		return (fileSize >= 0) && (fileSize < maxvalue);
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 		File helloWorld44Writeable = new File("helloWorld", 44, true);
 		helloWorld44Writeable.canAcceptForEnlarge(500);
 		String name = "testName"; 
 		File file1 = new File(name,3,false); 
 		String naam = file1.getName(); 
 		System.out.println(naam);
+		File timeTest1, timeTest2, timeTest3;
+		timeTest1 = new File("time", 1, true);
+		timeTest3 = new File("time", 3, true);
+		
+		TimeUnit.SECONDS.sleep(1);
+		timeTest1.setName("nextTime");
+		TimeUnit.SECONDS.sleep(1);
+		timeTest3.setName("nextTime");
+		System.out.println(timeTest1.modificationTime);
+		System.out.println(timeTest3.modificationTime);
 		//FileTest test = new FileTest();
 		
 		

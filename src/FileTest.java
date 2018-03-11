@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
-import org.junit.*;
 
+import org.junit.*;
+import java.util.concurrent.TimeUnit;
 public class FileTest {
 	/* This is for static methods */
 //	@BeforeClass public static void setupStaticMethod() {
@@ -13,7 +14,7 @@ public class FileTest {
 
 	/*This is for instance methods */
 	/*We'll use to test the size  */
-	@Before public void setUp() {
+	@Before public void setUp() throws InterruptedException {
 		helloWorld42Writeable = new File("helloWorld", 42, true);
 		helloWorld43Writeable = new File("helloWorld", 43, true);
 		helloWorld44Writeable = new File("helloWorld", 44, true);
@@ -22,7 +23,11 @@ public class FileTest {
 		
 		timeTest1 = new File("time", 1, true);
 		timeTest3 = new File("time", 3, true);
+		
+		TimeUnit.SECONDS.sleep(1);
 		timeTest1.setName("nextTime");
+		TimeUnit.SECONDS.sleep(1);
+		timeTest3.setName("nextTime");
 		timeTest2 = new File("time", 2, true);
 	}
 	@Test public final void testTrue() {
@@ -87,6 +92,7 @@ public class FileTest {
 	
 	@Test public final void testUserPeriod() {
 		assertFalse(timeTest1.hasOverlappingUserperiod(timeTest2));
+		/* Fails, assumed speed*/
 		assertTrue(timeTest1.hasOverlappingUserperiod(timeTest3));
 	}
 	
