@@ -175,18 +175,13 @@ public class File {
 	/*
 	 * All classes related to the size of the file
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> parent of 7ac0a1a... Apperently maxvalue got destroyed by git
-=======
 	
 	private int size;
 	
 	private final int maxvalue;
 
->>>>>>> parent of 2e65d14... meest recente versie ivm naamgeving.
+
 
 	/**
 	 * Returns the  size of our file
