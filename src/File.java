@@ -3,7 +3,9 @@
  * package practica; @Frederik wat doet dit hier 
  */
 import java.util.Date;
-
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
 import be.kuleuven.cs.som.annotate.*;
 /**
  * This class represents a file, and a file has a name and a size
@@ -123,8 +125,8 @@ public class File {
 	}
 	
 	
-	private String creationTime = null;
-	private String modificationTime = null; 
+	private Date creationTime = null;
+	private Date modificationTime = null; 
 	private String userPeriod; 
 	
 	
@@ -133,7 +135,7 @@ public class File {
 	 * 		Returns the time of creation of some file. 
 	 */
 	public String TimeCreated() {
-		return this.creationTime;
+		return this.creationTime.toString();
 	}
 	
 	/**
@@ -141,17 +143,17 @@ public class File {
 	 * @post		If there is no modification time we return null. 
 	 * @return	
 	 * 			The time difference
+	 * @throws ParseException 
 	 */
 	
-//	public int userPeriod() {
-//		if (this.modificationTime == null) {
-//			return null;
-//		}else {
-//			int userPeriod = this.creationTime - this.modificationTime; 
-//			return userPeriod; 
-//			/* @Jonas, niet zeker of dit correcte syntacs is. 
-//		}
-//		
+	public long userPeriod() throws ParseException {
+		if (this.modificationTime == null) {
+			return 0;
+		}else {
+			long Diff = this.creationTime.getTime() - this.modificationTime.getTime(); 
+			return Diff; 
+		}
+	}
 	
 	
 	
@@ -165,8 +167,15 @@ public class File {
 	 * 			Returns true if the user periods overlap. 
 	 */
 	public boolean hasOverlappingUserperiod(File other) {
-		
-		return true; /* @Frederik MOETNOGVERANDERTWORDEN*/
+		if (other.modificationTime == null || this.modificationTime == null) {
+			return false;}else {
+				if (this.modificationTime.before(other.creationTime) || other.modificationTime.before(this.creationTime)) {
+					return true; 
+				}else {
+					return false; 
+				}
+			}
+					
 	}
 	
 	/**
@@ -208,9 +217,9 @@ public class File {
 	 * @return 
 	 * 		A string with the current time. 
 	 */		
-	private String timeStamp() {
+	private Date timeStamp() {
 		Date date = new Date();
-		return date.toString(); 
+		return date; 
 	}
 		
 	/**
@@ -218,7 +227,7 @@ public class File {
 	 * 		returns the time on wich the time was last modified. 
 	 */
 	public String lastModified() {
-		return this.modificationTime; 
+		return this.modificationTime.toString(); 
 	}
 	
 
