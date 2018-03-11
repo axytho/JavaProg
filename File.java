@@ -97,9 +97,13 @@ public class File {
 	 * 			it will be used as a name, else .
 	 * 			when the string has length 0, the name will be "name". 
 	 * @throws	NoAccessRightsException()
+	 * 			If the file is not writable, throws an exception
+	 * 			| isWritable()
 	 * 
 	 */
 	public void setName(String name) throws NoAccessRightsException {
+			if (!isWritable)
+				throw new NoAccessRightsException
 			if (name.length() == 0) {
 				this.name = "name";
 			}else {
