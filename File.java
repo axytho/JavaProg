@@ -123,6 +123,11 @@ public class File {
 		return this.creationTime; 
 	}
 	
+	
+	public boolean hasOverlappingUserperiod() {
+		
+	}
+	
 	/**
 	 * All classes related to writable
 	 */
