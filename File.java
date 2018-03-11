@@ -75,16 +75,8 @@ public class File {
 	 * private field name
 	 */
 	private String name; 
-	/**
-	 * Variable representing the size of the file
-	 */
 
-	
 
-	
-	private String creationTime = null;
-	private String modificationTime = null; 
-	
 	
 	/**
 	 * Returns the name of the file
@@ -121,18 +113,57 @@ public class File {
 				}
 			}
 			if (creationTime != null)
-				{this.modificationTime = timeStamp();}
+				{this.modificationTime = timeStamp();
+				
+				
+				}
 			
 	}
 	
-
+	
+	private String creationTime = null;
+	private String modificationTime = null; 
+	private String userPeriod; 
+	
+	
+	/**
+	 * @return
+	 * 		Returns the time of creation of some file. 
+	 */
 	public String TimeCreated() {
 		return this.creationTime;
 	}
 	
+	/**
+	 * Calculates the time between creation time and modification time. 	
+	 * @post		If there is no modification time we return null. 
+	 * @return	
+	 * 			The time difference
+	 */
 	
-	public boolean hasOverlappingUserperiod() {
-		/* @Frederik placeholder so no errors*/
+	public String userPeriod() {
+		if (this.modificationTime = null) {
+			return null
+		}else {
+			String userPeriod = this.creationTime - this.modificationTime; 
+			return userPeriod; 
+			/* @Jonas, niet zeker of dit correcte syntacs is. 
+		}
+		
+	}
+	
+	
+	/**
+	 * Checks if two files have overlapping user periods. 
+	 * 
+	 * @param	other 
+	 * 				An other File object 
+	 * 
+	 * @return	
+	 * 			Returns true if the user periods overlap. 
+	 */
+	public boolean hasOverlappingUserperiod(File other) {
+		
 		return true;
 	}
 	
@@ -313,11 +344,11 @@ public class File {
 		return (fileSize >= 0) && (fileSize < maxvalue);
 	}
 
-	public static void main(String[] args){
-		String name = "go-%ede_man."; 
+	public static void main(String[ ] args){
+		String name = "testName"; 
 		File file1 = new File(name); 
-		System.out.println(file1.getName());
-		System.out.println(file1.getSize());
+		String period = file1.userPeriod(); 
+		System.out.println(period);
 	}
 
 }	
