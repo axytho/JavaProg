@@ -141,16 +141,16 @@ public class File {
 	 * 			The time difference
 	 */
 	
-	public String userPeriod() {
-		if (this.modificationTime = null) {
-			return null
-		}else {
-			String userPeriod = this.creationTime - this.modificationTime; 
-			return userPeriod; 
-			/* @Jonas, niet zeker of dit correcte syntacs is. 
-		}
-		
-	}
+//	public int userPeriod() {
+//		if (this.modificationTime == null) {
+//			return null;
+//		}else {
+//			int userPeriod = this.creationTime - this.modificationTime; 
+//			return userPeriod; 
+//			/* @Jonas, niet zeker of dit correcte syntacs is. 
+//		}
+//		
+	
 	
 	
 	/**
@@ -347,8 +347,8 @@ public class File {
 	public static void main(String[ ] args){
 		String name = "testName"; 
 		File file1 = new File(name); 
-		String period = file1.userPeriod(); 
-		System.out.println(period);
+		//String period = file1.userPeriod(); 
+		//System.out.println(period);
 	}
 
 }	
