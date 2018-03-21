@@ -1,7 +1,3 @@
-
-/**
- * package practica; @Frederik wat doet dit hier 
- */
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.text.SimpleDateFormat;
@@ -45,10 +41,6 @@ public class File {
 		setWriteable(true);
 		setName(name);
 		setWriteable(writable);
-		
-		
-		
-		/* er moet hier nog de name komen */
 		this.size = size;
 
 		this.creationTime = timeStamp();  
@@ -72,7 +64,7 @@ public class File {
 		this.creationTime = timeStamp();  
 	}
 		
-		/* @Frederick the right way of making a new constructor */
+		
 		
 		
 		
@@ -189,8 +181,7 @@ public class File {
 	/**
 	 * A boolean which states wether a given file is writeable
 	 */
-	private boolean writable; /* when the file is created it's always writable. @Frederick, you should
-	do that in the constructor, not the initialization */
+	private boolean writable; 
 	
 	
 	/**
@@ -359,23 +350,23 @@ public class File {
 		return (fileSize >= 0) && (fileSize < maxvalue);
 	}
 
-	public static void main(String[] args) throws InterruptedException{
-		File helloWorld44Writeable = new File("helloWorld", 44, true);
-		helloWorld44Writeable.canAcceptForEnlarge(500);
-		String name = "testName"; 
-		File file1 = new File(name,3,false); 
-		String naam = file1.getName(); 
-		System.out.println(naam);
-		File timeTest1, timeTest2, timeTest3;
-		timeTest1 = new File("time", 1, true);
-		timeTest3 = new File("time", 3, true);
-		
-		TimeUnit.SECONDS.sleep(1);
-		timeTest1.setName("nextTime");
-		TimeUnit.SECONDS.sleep(1);
-		timeTest3.setName("nextTime");
-		System.out.println(timeTest1.modificationTime);
-		System.out.println(timeTest3.modificationTime);
+//	public static void main(String[] args) throws InterruptedException{
+//		File helloWorld44Writeable = new File("helloWorld", 44, true);
+//		helloWorld44Writeable.canAcceptForEnlarge(500);
+//		String name = "testName"; 
+//		File file1 = new File(name,3,false); 
+//		String naam = file1.getName(); 
+//		System.out.println(naam);
+//		File timeTest1, timeTest3;
+//		timeTest1 = new File("time", 1, true);
+//		timeTest3 = new File("time", 3, true);
+//		
+//		TimeUnit.SECONDS.sleep(1);
+//		timeTest1.setName("nextTime");
+//		TimeUnit.SECONDS.sleep(1);
+//		timeTest3.setName("nextTime");
+//		System.out.println(timeTest1.modificationTime);
+//		System.out.println(timeTest3.modificationTime);
 		//FileTest test = new FileTest();
 		
 		
@@ -396,7 +387,8 @@ public class File {
 //		test.testShorten();	
 /*		long period = file1.userPeriod(); */
 /*		System.out.println(period); */
-	}
+//		}
+	
 
 }	
 //	private boolean writable = true;  /* when the file is created it's always writable. 
